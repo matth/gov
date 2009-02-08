@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * Default home page view
+ *  
+ * @author
+ * @version
+ */
+
+$this->headTitle('Serach for your MP');
+$this->placeholder('title')->set('Search for you MP');
+?>
+
+<form method="post" action="/index/index">
+	
+	<input type="text" name="constituency" />
+	<input type="submit" name="Submit" />
+		
+</form>
+
+
+<?= $this->msg ?>
+
+<?php 
+	if ($this->results) {
+	
+		if (!is_array($this->results)) {
+			echo 'No results found';
+		} else {
+			
+			foreach ($this->results as $result) {
+				echo "<h3>$result->name</h3>";
+			}
+			
+		}
+		
+	}
+?>

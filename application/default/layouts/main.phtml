@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * Default Layout
+ *  
+ * @author
+ * @version
+ */
+
+echo '<?xml version="1.0" encoding="UTF-8" ?>';
+echo $this->doctype('XHTML1_STRICT'); 
+?>
+<html>
+
+	<head>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<?php 
+		
+		$this->headLink()->appendStylesheet('/css/__application-version-number__/common.css');
+		$this->headScript()->appendFile('/js/__application-version-number__/common.js');
+				
+		echo $this->headTitle();
+		echo $this->headLink();
+		
+		?>
+		
+		<script type="text/javascript" src="http://www.bbc.co.uk/glow/gloader.js"></script>
+		<script type="text/javascript">
+  			gloader.load(["glow", "1", "glow.anim", "glow.net"]);
+		</script>
+		
+		<?= $this->headScript() ?>
+	    
+	</head>
+	
+	<body>
+	
+		<div id="container">
+			<div id="mast_head">
+				<h1><a href="/">Find Your MP</a></h1>
+			</div>
+			
+			<?= $this->searchForm() ?>
+			
+			<div id="content">
+				<?php echo $this->layout()->content ?>
+			</div>
+			
+		</div>	
+
+	</body>
+
+</html>

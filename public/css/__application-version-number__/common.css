@@ -1,0 +1,67 @@
+/* Reset */
+body{font-size:62.5%;font-family:verdana,helvetica,arial,sans-serif;line-height:1;text-shadow:0 0 0 #000}
+body,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,legend,input,p,blockquote,th,td,hr{margin:0;padding:0}
+h1,h2,h3,h4,h5,h6{font-size:100%}
+table{border-collapse:collapse;border-spacing:0}
+caption{text-align:left;font-weight:normal}
+th{text-align:left}
+cite,address{font-style:normal}
+ol,ul{list-style:none}
+sub,sup{line-height:2}
+img{border:none}
+pre,code{font-size:1.2em}
+fieldset{border:0}
+q:before,q:after{content:''}
+
+/* Layout */
+body{background:#eaeaea}
+#container {width:974px;margin:0 auto;border-left:10px solid #fff;border-right:10px solid #fff;min-height:800px;}
+
+
+/* Mast Head */
+#mast_head {width:974px;height:100px;background:#000;color:#fff;position:relative;}
+#mast_head h1 {position:absolute;left:10px;top:0px;color:#fff;font-size:2.5em;height:100px;line-height:100px;}
+#mast_head h1 a,
+#mast_head h1 a:hover,
+#mast_head h1 a:focus {color:#fff;text-decoration:none;}
+
+/* Search Form */
+#search_form {background:#fff;position:relative;height:70px;border-bottom:1px solid #000;}
+#search_form.errors {height:80px;}
+#search_form h2 {font-size:2em;width:150px;position:absolute;left:10px;top:0px;line-height:70px;height:70px;}
+
+#search_form #searchTypeLabel {display:none;}
+
+#search_form #searchTypeConstituencyLabel {font-size:1.2em;font-weight:bold;position:absolute;top:20px;left:175px;width:350px;}
+#search_form #searchTypeConstituencyLabel input {margin-right:10px;}
+
+#search_form #searchTypePostcodeLabel {font-size:1.2em;font-weight:bold;position:absolute;top:20px;left:525px;width:360px;}
+#search_form #searchTypePostcodeLabel input {margin-right:10px;}
+
+#search_form #or {font-size:2em;width:40px;position:absolute;left:435px;top:0px;line-height:70px;height:70px;font-weight:bold;}
+
+#postcodeLabel,
+#constituencyLabel {position:absolute;top:-1000px;}
+
+#postcodeLabel .error,
+#constituencyLabel .error {position:absolute;top:1063px;color:red;font-weight:bold;width:350px;display:block;}
+#constituencyLabel .error {left:175px;}
+#postcodeLabel .error {left:525px;}
+
+#constituency {position:absolute;left:175px;top:40px;width:200px;}
+#postcode {position:absolute;left:525px;top:40px;width:200px;}
+
+#search {position:absolute;left:850px;top:30px;}
+
+/* Content */
+#content {padding:10px;background:#fff;min-height:600px;}
+
+/* Search results */
+#search_results {list-style:none;}
+#search_results .result {height:40px;border-bottom:1px solid #ccc;position:relative;}
+#search_results .result h3 {height:40px;line-height:40px;font-size:1.3em;position:absolute;left:50px;top:0;}
+#search_results .result h3 a {text-decoration:none;color:#000;}
+#search_results .result h3 a:hover {text-decoration:underline;}
+#search_results .result .party {padding:0;margin:0;position:absolute;left:0;top:0;}
+
+

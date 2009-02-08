@@ -1,0 +1,13 @@
+
+<?php 
+	$mp = (array_key_exists(0, $this->mp['twfy']['match'])) ? $this->mp['twfy']['match'][0] :  $this->mp['twfy']['match'] 
+?>
+
+<h2>MP Details - <?= $mp['full_name'] ?></h2>
+
+<dl>
+	<dt>Party</dt>
+	<dd><?= $mp['party'] ?></dd>
+	<dt>Constituency</dt>
+	<dd><?= $mp['constituency'] ?></dd>
+</dl>

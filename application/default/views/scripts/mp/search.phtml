@@ -1,0 +1,13 @@
+<?php if ($this->error) : ?>
+	<div id="search_error">
+		<h2>Search Error</h2>
+		<p class="error"><?= $this->error ?></p>	
+		<p>Please try searching again, if this problem persists then you may <a href="«#">contact us</a></p>
+	</div>
+	
+<?php elseif (isset($this->results)) : ?>
+	<h2>Search Results</h2>
+	<?= $this->partial('_results.phtml', array('results' => $this->results)) ?>	
+<?php endif ?>
+
+
