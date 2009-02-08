@@ -39,13 +39,15 @@ echo $this->doctype('XHTML1_STRICT');
 	
 		<div id="container">
 			<div id="mast_head">
-				<h1><a href="/">Find Your MP</a></h1>
+				<h1><a href="/"><span>Find Your MP</span></a></h1>
+				<?= $this->searchForm() ?>
 			</div>
-			
-			<?= $this->searchForm() ?>
-			
-			<div id="content">
-				<?php echo $this->layout()->content ?>
+						
+			<div id="content_wrapper">
+				<div id="content">
+					<?php echo $this->layout()->content ?>
+				</div>
+				<br style="clear:both;" />
 			</div>
 			
 		</div>	
