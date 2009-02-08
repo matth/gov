@@ -3,53 +3,24 @@
 ?>
 	
 <div id="search_form" <?php if ($form->isErrors()) : ?> class="errors"<?php endif ?>>
-	<h2>Search by:</h2>
+	<h2>Search for your MP:</h2>
 	
 	<form enctype="application/x-www-form-urlencoded" method="post" action="/mp/search/">
-	
-		<div id="by">
-			<label for="searchType" id="searchTypeLabel">By</label>
-			<?php if($form->getElement('searchType')->getValue() == 'constituency' || $form->getElement('searchType')->getValue() != 'postcode') : ?>
-				<label id="searchTypeConstituencyLabel"><input type="radio" name="searchType" id="searchType-constituency" checked="checked" value="constituency" />Constituency</label>
-			<?php else : ?>
-				<label id="searchTypeConstituencyLabel"><input type="radio" name="searchType" id="searchType-constituency" value="constituency" />Constituency</label>
-			<?php endif ?>
-	
-			<?php if($form->getElement('searchType')->getValue() == 'postcode') : ?>
-				<label id="searchTypePostcodeLabel"><input type="radio" name="searchType" id="searchType-postcode" checked="checked" value="postcode" />Postcode</label>
-			<?php else : ?>
-				<label id="searchTypePostcodeLabel"><input type="radio" name="searchType" id="searchType-postcode" value="postcode" />Postcode</label>
-			<?php endif ?>
-		</div>
+			
+		<label for="searchField" id="searchFieldLabel">Search:</label>
+		<input type="text" name="searchField" id="searchField" value="<?= $form->getElement('searchField')->getValue() ?>" />
 		
-		<label for="constituency" id="constituencyLabel">
-			Constituency
-			<?php if ($form->getElement('constituency')->hasErrors()) : ?>
-				<span class="error">
+		<?php if ($form->getElement('searchField')->hasErrors()) : ?>
+			<p class="error">
 				<?php 
-					$errors = $form->getElement('constituency')->getErrorMessages();
+					$errors = $form->getElement('searchField')->getErrorMessages();
 					echo $errors[0];
 				?>
-				</span>
-			<?php endif ?>
-		</label>
-		<input type="text" name="constituency" id="constituency" value="<?= $form->getElement('constituency')->getValue() ?>" />
-		
-		<span id="or">or</span>
-		
-		<label for="postcode" id="postcodeLabel">
-			Postcode
-			<?php if ($form->getElement('postcode')->hasErrors()) : ?>
-				<span class="error">
-				<?php 
-					$errors = $form->getElement('postcode')->getErrorMessages();
-					echo $errors[0];
-				?>
-				</span>
-			<?php endif ?>
-		</label>
-		<input type="text" name="postcode" id="postcode" value="<?= $form->getElement('postcode')->getValue() ?>" />
-
+			</p>
+		<?php else : ?>
+			<p class="info">Search by constituency name or full UK postcode<br /> e.g. "Ealing, Acton & Shepherd's Bush" or "W12 7RJ"</p>
+		<?php endif ?>
+				
 		<input type="submit" name="Search" id="search" value="Search" />
 		
 	</form>

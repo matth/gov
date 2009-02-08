@@ -26,32 +26,18 @@ body{background:#eaeaea}
 #mast_head h1 a:focus {color:#fff;text-decoration:none;}
 
 /* Search Form */
-#search_form {background:#fff;position:relative;height:70px;border-bottom:1px solid #000;}
-#search_form.errors {height:80px;}
-#search_form h2 {font-size:2em;width:150px;position:absolute;left:10px;top:0px;line-height:70px;height:70px;}
+#search_form {background:#fff;position:relative;height:80px;border-bottom:1px solid #000;}
 
-#search_form #searchTypeLabel {display:none;}
+#search_form h2 {font-size:2em;width:280px;position:absolute;left:10px;top:0px;line-height:80px;height:80px;}
+#searchFieldLabel {position:absolute;top:-1000px;}
 
-#search_form #searchTypeConstituencyLabel {font-size:1.2em;font-weight:bold;position:absolute;top:20px;left:175px;width:350px;}
-#search_form #searchTypeConstituencyLabel input {margin-right:10px;}
+#searchField {position:absolute;left:300px;top:25px;width:300px;padding:2px 1px;border:1px solid #000;}
+#search_form .info,
+#search_form .error {font-weight:bold;color:#999;position:absolute;left:300px;top:50px;line-height:1.2em;text-align:center;}
 
-#search_form #searchTypePostcodeLabel {font-size:1.2em;font-weight:bold;position:absolute;top:20px;left:525px;width:360px;}
-#search_form #searchTypePostcodeLabel input {margin-right:10px;}
+#search_form .error {color:red;text-align:left;}
 
-#search_form #or {font-size:2em;width:40px;position:absolute;left:435px;top:0px;line-height:70px;height:70px;font-weight:bold;}
-
-#postcodeLabel,
-#constituencyLabel {position:absolute;top:-1000px;}
-
-#postcodeLabel .error,
-#constituencyLabel .error {position:absolute;top:1063px;color:red;font-weight:bold;width:350px;display:block;}
-#constituencyLabel .error {left:175px;}
-#postcodeLabel .error {left:525px;}
-
-#constituency {position:absolute;left:175px;top:40px;width:200px;}
-#postcode {position:absolute;left:525px;top:40px;width:200px;}
-
-#search {position:absolute;left:850px;top:30px;}
+#search {position:absolute;left:625px;top:25px;}
 
 /* Content */
 #content {padding:10px;background:#fff;min-height:600px;}

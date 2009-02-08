@@ -45,11 +45,13 @@ class MpController extends Zend_Controller_Action {
     			
     			try {
     				
+    				$postcodeValidator = new Gov_Validate_Postcode();
+    				
     				// Constituency search
-    				if ($this->getRequest()->getParam('searchType') == 'constituency') {
+    				if (!$postcodeValidator->isValid($form->getValue('searchField'))) {
     					
-    					$constituency = Constituency::findByName($form->getValue('constituency'));
-    					$this->view->dump = $constituency;
+    					$constituency = Constituency::findByName($form->getValue('searchField'));
+    					
     					// Any errors ?
     					if (!isset($constituency['twfy']['match']) || isset($constituency['twfy']['error'])) {
     						return $this->view->error = 'Constituency not found';
@@ -72,7 +74,7 @@ class MpController extends Zend_Controller_Action {
     					
     				} else {
     					
-    					$mp = Mp::findByPostcode($form->getValue('postcode'));
+    					$mp = Mp::findByPostcode($form->getValue('searchField'));
     					
     					if (isset($mp['twfy']['error'])) {
     						$this->view->error = $mp['twfy']['error'];

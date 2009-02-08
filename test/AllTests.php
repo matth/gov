@@ -6,9 +6,10 @@
  * @version 
  */
 require_once 'PHPUnit/Framework/TestSuite.php';
-require_once '../application/Initializer.php';
 
-require_once 'test/application/default/controllers/IndexControllerTest.php';
+set_include_path('.' . PATH_SEPARATOR . '../library' . PATH_SEPARATOR . '../application/default/models/' . PATH_SEPARATOR . get_include_path());
+
+require_once './lib/Gov/Validate/PostcodeTest.php';
 
 /**
  * AllTests class - aggregates all tests of this project
@@ -19,9 +20,9 @@ class AllTests extends PHPUnit_Framework_TestSuite {
 	 * Constructs the test suite handler.
 	 */
 	public function __construct() {
-		$this->setName ( 'AllTests' );
+		$this->setName ('AllTests');
 		
-		$this->addTestSuite ( 'IndexControllerTest' );
+		$this->addTestSuite('Gov_Validate_PostcodeTest');
 	
 	}
 	

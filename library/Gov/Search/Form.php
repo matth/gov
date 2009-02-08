@@ -10,33 +10,15 @@ class Gov_Search_Form extends Zend_Form {
 	public function init() {
 		
 		$form = $this;
-
-    	$searchType = $form->createElement('radio', 'searchType', array(
-    											'Label' => 'Search by',
-    											'multiOptions' => array('constituency' => 'Constituency', 'postcode' => 'Postcode'), 
-    											)
-    										)
-    										->setRequired(true)
-    										->setErrorMessages(array('Please select you type of search'))
-    										->setValue('constituency');
-    										      	
-    	$constituency = $form->createElement('text', 'constituency', array(
-    												'label' => 'Constituency',
-    												'allowEmpty' => false,
-    												'validators' => array(new Gov_Validate_FieldDepends('searchType', 'constituency'))
-    											)
-    										)->setErrorMessages(array('Please enter your constituency name'));
     										
-		$postcode = $form->createElement('text', 'postcode', array(
-    												'label' => 'Postcode',
+		$searchField = $form->createElement('text', 'searchField', array(
+    												'label' => 'Search for you mp',
     												'allowEmpty' => false,
-    												'validators' => array(new Gov_Validate_FieldDepends('searchType', 'postcode'))
+													'required' => true,
     											)
-    										)->setErrorMessages(array('Please enter your postcode'));    										
+    										)->setErrorMessages(array('Please enter your constituency name or full UK postcode'));    										
     	
-		$form->addElement($searchType);
-    	$form->addElement($constituency);
-    	$form->addElement($postcode);
+		$form->addElement($searchField);
     	$form->addElement('submit', 'Search', array('order' => 100));
     	
  	   	$form->setDecorators(array(array('ViewScript', array(
@@ -44,6 +26,8 @@ class Gov_Search_Form extends Zend_Form {
  	   							'form' => $this
     						))));
     	
+		$form->getElement('Search')->setIgnore(true);    						
+    						
     	$form->setMethod('post');
     	$form->setAction('/mp/search/');
     	
