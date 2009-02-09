@@ -5,9 +5,11 @@
 		<p>Please try searching again, if this problem persists then you may <a href="«#">contact us</a></p>
 	</div>
 	
-<?php elseif (isset($this->results)) : ?>
+<?php else : ?>
 	<h2>Search Results</h2>
-	<?= $this->partial('_results.phtml', array('results' => $this->results)) ?>	
+	<? if(isset($this->results)) : ?>
+		<?= $this->partial('_results.phtml', array('results' => $this->results)) ?>
+	<?php endif ?>	
 <?php endif ?>
 
 

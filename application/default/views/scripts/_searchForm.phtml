@@ -2,7 +2,7 @@
 	$form = $this->form;
 ?>
 	
-<div id="search_form" <?php if ($form->isErrors()) : ?> class="errors"<?php endif ?>>
+<div id="search_form" <?php if ($form->isErrors()) : ?>class="errors"<?php endif ?>>
 		
 	<form enctype="application/x-www-form-urlencoded" method="post" action="/mp/search/">
 			
@@ -17,9 +17,9 @@
 				?>
 			</p>
 		<?php else : ?>
-			<p class="info">Search by constituency name or full UK postcode<br /> e.g. "Ealing, Acton & Shepherd's Bush" or "W12 7RJ"</p>
+		<p class="info">Search by constituency name or full UK postcode<br /> e.g. "Ealing, Acton & Shepherd's Bush" or "W12 7RJ"</p>
 		<?php endif ?>
-				
+			
 		<input type="submit" name="Search" id="search" value="Search" />
 		
 	</form>

@@ -16,7 +16,7 @@ class Gov_Search_Form extends Zend_Form {
     												'allowEmpty' => false,
 													'required' => true,
     											)
-    										)->setErrorMessages(array('Please enter a constituency name or full UK postcode'));    										
+    										)->setErrorMessages(array('Search error: Please enter a constituency name or full UK postcode'));    										
     	
 		$form->addElement($searchField);
     	$form->addElement('submit', 'Search', array('order' => 100));
