@@ -13,7 +13,7 @@ class Zend_View_Helper_SearchForm extends Zend_View_Helper_Abstract {
 	 */
 	public function searchForm() {
 		
-		$form = new Gov_search_Form();
+		$form = new Gov_Search_Form();
 		
 		$front = Zend_Controller_Front::getInstance();
 		$request = $front->getRequest();
