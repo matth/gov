@@ -1,13 +1,13 @@
 <ul id="search_results">
-<?php foreach ($this->results as $result) : ?>
-	<li class="result <?= $result['twfy']['party'] ?>">
+<?php foreach ($this->results as $mp) : ?>
+	<li class="result <?= $mp->party ?>">
 		<h3>
-			<a href="/mp/show/<?= $result['twfy']['person_id'] ?>">
-				<?= $result['twfy']['constituency'] ?> - <?= $result['twfy']['full_name'] ?>
+			<a href="/mp/show/<?= $mp->id ?>">
+				<?= $mp->constituency ?> - <?= $mp->name ?>
 			</a>
 		</h3>
 		<p class="party">
-			<img width="40" height="40" alt="<?= $result['twfy']['party'] ?>" title="<?= $result['twfy']['party'] ?>" src="/images/__application-version-number__/party_logos/<?= strtolower(str_replace(' ', '', $result['twfy']['party'])) ?>.png" />
+			<img width="40" height="40" alt="<?= $mp->party ?>" title="<?= $mp->party ?>" src="/images/__application-version-number__/party_logos/<?= strtolower(str_replace(' ', '', $mp->party)) ?>.png" />
 		</p>
 	</li>
 <?php endforeach ?>

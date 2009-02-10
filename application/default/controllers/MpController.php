@@ -32,7 +32,6 @@ class MpController extends Zend_Controller_Action {
     	
     	if (!$this->getRequest()->isPost()) {
     		$this->_helper->redirector('list');
-    		
     	} else {
 			
     		$form = $this->getSearchForm();
@@ -40,9 +39,7 @@ class MpController extends Zend_Controller_Action {
 			$this->view->form = $form;
 
     		if ($form->isValid($data)) {
-    			
-    			$results = array();
-    			
+    			    			
     			try {
     				
     				$postcodeValidator = new Gov_Validate_Postcode();
@@ -50,46 +47,17 @@ class MpController extends Zend_Controller_Action {
     				// Constituency search
     				if (!$postcodeValidator->isValid($form->getValue('searchField'))) {
     					
-    					$constituency = Constituency::findByName($form->getValue('searchField'));
-    					
-    					// Any errors ?
-    					if (!isset($constituency['twfy']['match']) || isset($constituency['twfy']['error'])) {
-    						return $this->view->error = 'Constituency not found';
-    					} else {
-    						
-    						if (isset($constituency['twfy']['match']['name'])) {
-    							// Single result
-    								$mp = Mp::findByConstituency($constituency['twfy']['match']['name']);
-	    							array_push($results, $mp);
-    						} else {
-								// Multiple results
-	    						foreach ($constituency['twfy']['match'] as $constituency) {
-	    							$mp = Mp::findByConstituency($constituency['name']);
-	    							array_push($results, $mp);
-	    						}
-    							
-    						}
-    						
-    					}
+    					$results = Mp::findByConstituency($form->getValue('searchField'));
     					
     				} else {
     					
-    					$mp = Mp::findByPostcode($form->getValue('searchField'));
-    					
-    					if (isset($mp['twfy']['error'])) {
-    						$this->view->error = $mp['twfy']['error'];
-    						return;
-    					} else {
-    						array_push($results, $mp);
-    					}
-    					
+    					$results = Mp::findByPostcode($form->getValue('searchField'));
     				}
     				
     				$this->view->results = $results;
-    				
     				    				
-    			} catch (Exception $e) {
-    				
+    			} catch (MpFindException $e) {
+    				$this->view->error = $e->getMessage();
     			}
     			
     		} 

@@ -1,7 +1,9 @@
-<project name="findyourmp">
+<project name="findyourmp" basedir=".">
     
     <property name="build.dir" value="build-temp" />
-    <property name="version.number" value="0.1" />
+    <property name="dist.dir" value="dist" />
+    <property name="deploy.dir" value="/home/lyrical/gov" />
+    <property name="version.number" value="0.1.1" />
      
     <target name="build" description="Builds site">
         
@@ -9,49 +11,50 @@
         <delete dir="${build.dir}" failonerror="no" />
         <mkdir dir="${build.dir}" />
         
+        <!-- Set up dist dir -->
+        <delete dir="${dist.dir}" failonerror="no" />
+        <mkdir dir="${dist.dir}" />
+        
         <!-- Export into build dir -->
         <exec executable="git">
-            <arg line="checkout-index -a -f --prefix=${build.dir}/"/>
+            <arg line="checkout-index -a -f --prefix=${build.dir}${deploy.dir}/"/>
         </exec>
         
         <!-- Tidy -->
         <delete includeemptydirs="true">
-            <fileset dir="${build.dir}" excludes="public/**/* library/**/* application/**/*" />
+            <fileset dir="${build.dir}${deploy.dir}" excludes="public/**/* library/**/* application/**/*" />
         </delete>
         
         <!-- Replace version num token -->
         <replace dir="${build.dir}" value="${version.number}" token="__application-version-number__" />
         
-        <!-- Rename js and css version number files -->
-        <move todir="${build.dir}/public/css/${version.number}">
-            <fileset dir="${build.dir}/public/css/__application-version-number__"/>
+        <!-- Rename images, js and css version number files -->
+        <move todir="${build.dir}${deploy.dir}/public/css/${version.number}">
+            <fileset dir="${build.dir}${deploy.dir}/public/css/__application-version-number__"/>
         </move>
         
-        <move todir="${build.dir}/public/js/${version.number}">
-            <fileset dir="${build.dir}/public/js/__application-version-number__"/>
+        <move todir="${build.dir}${deploy.dir}/public/js/${version.number}">
+            <fileset dir="${build.dir}${deploy.dir}/public/js/__application-version-number__"/>
+        </move>
+        
+        <move todir="${build.dir}${deploy.dir}/public/images/${version.number}">
+            <fileset dir="${build.dir}${deploy.dir}/public/images/__application-version-number__"/>
         </move>
 
     </target>
     
-    <!--
     <target name="package" depends="build" description="Packages built codebase into deplyable tar file">
         
-        <tar destfile="${basedir}/docs.tar">
-            <tarfileset dir="${dir.src}/docs"
-                fullpath="/usr/doc/ant/README"
-                preserveLeadingSlashes="true">
-                <include name="readme.txt"/>
-            </tarfileset>
-            <tarfileset dir="${dir.src}/docs"
-                prefix="/usr/doc/ant"
-                preserveLeadingSlashes="true">
-                <include name="*.html"/>
-            </tarfileset>
-        </tar>
-        
+        <tar destfile="${dist.dir}/findyourmp-${version.number}.tar.gz" basedir="${build.dir}" compression="gzip" />
         
     </target>
-    -->
     
+    <target name="deploy_live" description="Deploys to live" depends="package">
+        <input message="Please enter the password for live:" addproperty="live.password" description=""/>
+        
+        <exec executable="curl">
+            <arg line="-T ${dist.dir}/findyourmp-${version.number}.tar.gz -u lyrical:${live.password} ftp://matthaynes.net/data/packages/findyourmp-${version.number}.tar.gz"/>
+        </exec>
+    </target>
     
 </project>
