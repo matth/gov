@@ -1,0 +1,57 @@
+<project name="findyourmp">
+    
+    <property name="build.dir" value="build-temp" />
+    <property name="version.number" value="0.1" />
+     
+    <target name="build" description="Builds site">
+        
+        <!-- Set up build dir -->
+        <delete dir="${build.dir}" failonerror="no" />
+        <mkdir dir="${build.dir}" />
+        
+        <!-- Export into build dir -->
+        <exec executable="git">
+            <arg line="checkout-index -a -f --prefix=${build.dir}/"/>
+        </exec>
+        
+        <!-- Tidy -->
+        <delete includeemptydirs="true">
+            <fileset dir="${build.dir}" excludes="public/**/* library/**/* application/**/*" />
+        </delete>
+        
+        <!-- Replace version num token -->
+        <replace dir="${build.dir}" value="${version.number}" token="__application-version-number__" />
+        
+        <!-- Rename js and css version number files -->
+        <move todir="${build.dir}/public/css/${version.number}">
+            <fileset dir="${build.dir}/public/css/__application-version-number__"/>
+        </move>
+        
+        <move todir="${build.dir}/public/js/${version.number}">
+            <fileset dir="${build.dir}/public/js/__application-version-number__"/>
+        </move>
+
+    </target>
+    
+    <!--
+    <target name="package" depends="build" description="Packages built codebase into deplyable tar file">
+        
+        <tar destfile="${basedir}/docs.tar">
+            <tarfileset dir="${dir.src}/docs"
+                fullpath="/usr/doc/ant/README"
+                preserveLeadingSlashes="true">
+                <include name="readme.txt"/>
+            </tarfileset>
+            <tarfileset dir="${dir.src}/docs"
+                prefix="/usr/doc/ant"
+                preserveLeadingSlashes="true">
+                <include name="*.html"/>
+            </tarfileset>
+        </tar>
+        
+        
+    </target>
+    -->
+    
+    
+</project>
