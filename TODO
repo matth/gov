@@ -1,0 +1,10 @@
+TODO:
+
+* Data Mapper for model
+* Unit test form model and data mapper
+* 'Google Suggest' style search box
+* JSON output
+* Improve MP model data (add more content)
+* Style MP page
+* Add geo long / lat to MP model
+* Investigate Google map interface
