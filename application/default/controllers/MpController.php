@@ -11,18 +11,33 @@ require_once 'Zend/Controller/Action.php';
 class MpController extends Zend_Controller_Action {
 
 	/**
+	 * Data Mapper for object creation
+	 *
+	 * @var MpMapperInterface
+	 */
+	public $mapper;
+	
+	/**
+	 * Initialize object
+	 */
+	public function init() {
+		parent::init();
+		$this->mapper = new MpSqliteMapper();
+	}
+	
+	/**
 	 * Default action
 	 */
 	public function indexAction() {
 		$this->_helper->redirector('list');
 	}
-	
+		
 	/**
 	 * List all MPs
 	 */
     public function listAction() {
         $this->view->form = $this->getSearchForm();
-        $this->view->results = Mp::findAll();
+        $this->view->results = $this->mapper->findAll();
     }
     
     /**
@@ -47,11 +62,11 @@ class MpController extends Zend_Controller_Action {
     				// Constituency search
     				if (!$postcodeValidator->isValid($form->getValue('searchField'))) {
     					
-    					$results = Mp::findByConstituency($form->getValue('searchField'));
+    					$results = $this->mapper->findByConstituency($form->getValue('searchField'));
     					
     				} else {
     					
-    					$results = Mp::findByPostcode($form->getValue('searchField'));
+    					$results = $this->mapper->findByPostcode($form->getValue('searchField'));
     				}
     				
     				$this->view->results = $results;
@@ -70,7 +85,7 @@ class MpController extends Zend_Controller_Action {
      * Show Action
      */
     public function showAction() {
-    	
+
     	$id = $this->getRequest()->getParam('id');
     	
     	if (!$id) {
@@ -78,7 +93,7 @@ class MpController extends Zend_Controller_Action {
     	} else {
     		
     		if (is_numeric($id)) {
-    			$this->view->mp = Mp::findById(intval($id));
+    			$this->view->mp = $this->mapper->findById(intval($id));
     		} else {
     			throw new Gov_Exception_BadParam("Param is not an integer");
     		}

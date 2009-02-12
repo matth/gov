@@ -7,6 +7,8 @@
  */
 set_include_path('.' . PATH_SEPARATOR . '../library' . PATH_SEPARATOR . '../application/default/models/' . PATH_SEPARATOR . get_include_path());
 
+define('APPLICATION_DIRECTORY', '..');
+
 require_once 'Initializer.php';
  
 // Prepare the front controller. 

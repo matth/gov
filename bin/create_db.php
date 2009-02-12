@@ -6,12 +6,14 @@
 	
 	Zend_Loader::registerAutoload();
 
-	system('rm findyourmp-db.sqlite');
+	$dbName = 'findyourmp.db';
 	
-	if ($db = new SQLiteDatabase('findyourmp-db.sqlite')) {
+	system('rm ' . $dbName);
+	
+	if ($db = new PDO('sqlite:' . $dbName)) {
 		
-		$q = @$db->query('SELECT requests FROM mps WHERE id = 1');
-        
+		$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+		
 		// Fetch data
 		fwrite(STDOUT, "Fetching data from theyworkforyou.com API \n");
 		
@@ -21,14 +23,14 @@
 		
 		// Make DB table and insert data
 		fwrite(STDOUT, "Inserting data into table \n");
-		$db->queryExec('CREATE TABLE mps (id INTEGER AUTOINCREMENT PRIMARY KEY, person_id INTEGER, name STRING, constituency STRING);');
+		$db->query('CREATE TABLE mps (id INTEGER PRIMARY KEY, person_id INTEGER, name STRING, constituency STRING, party STRING);');
 		
 		foreach ($mpData['twfy']['match'] as $mp) {
-			$db->queryExec("INSERT INTO mps (person_id, name, constituency) VALUES ({$mp['person_id']}, \"{$mp['name']}\", \"{$mp['constituency']}\");");
+			$db->query("INSERT INTO mps (person_id, name, constituency, party) VALUES ({$mp['person_id']}, \"{$mp['name']}\", \"{$mp['constituency']}\", \"{$mp['party']}\");");
 		}
 		
-		$db->close();
-		
+		$db->query('CREATE INDEX person_id ON mps (person_id)');
+				
     } else {
         die($err);
     }

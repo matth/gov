@@ -1,6 +1,6 @@
 TODO:
 
-* Data Mapper for model
+* Vastly improve deploy script, simple bash thing with custom deploy.sh within package
 * Unit test form model and data mapper
 * 'Google Suggest' style search box
 * JSON output

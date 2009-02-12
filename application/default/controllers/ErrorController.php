@@ -22,13 +22,15 @@ class ErrorController extends Zend_Controller_Action
     	
         $this->errors = $this->_getParam('error_handler');
         
+        $this->view->errors = $this->errors;
+        
         if ($this->errors->type == Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_CONTROLLER ||
         	$this->errors->type == Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_ACTION ||
         	$this->errors->exception instanceof Gov_Exception_BadParam)
         {
-        	$this->_forward('four-oh-four');
+        	return $this->fourOhFourAction();
         } else {
-        	$this->_forward('five-hundred');
+        	return $this->fiveHundredAction();
         }
         
     }
@@ -44,6 +46,7 @@ class ErrorController extends Zend_Controller_Action
     	$this->getResponse()->setHttpResponseCode(500);
     	$this->view->title = 'Application Error';
         $this->view->message = $this->errors->exception;
+        $this->view->errors = $this->errors;
         $this->render('error');
     }
 }
