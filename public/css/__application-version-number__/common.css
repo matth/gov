@@ -33,7 +33,7 @@ body{background:#eaeaea}
 #search_form h2 {font-size:1.4em;width:280px;position:absolute;left:10px;top:-3px;line-height:80px;height:80px;text-align:right;}
 #searchFieldLabel {position:absolute;top:-1000px;}
 
-#searchField {position:absolute;left:310px;top:31px;width:278px;font-size:1.4em;padding:0 1px;border:none;}
+#searchField {position:absolute;left:310px;top:31px;width:275px;font-size:1.4em;padding:0 1px;border:none;}
 #search_form .info {font-weight:bold;color:#e4e6f8;position:absolute;left:300px;top:55px;line-height:1.2em;text-align:center;}
 
 #search_form .error {position:absolute;left:-59px;bottom:8px;height:30px;color:#fff;text-align:left;background:red url('./f/search_error.jpg') no-repeat;border-top:1px solid #fff;border-bottom:1px solid #fff;width:924px;padding-left:50px;line-height:30px;font-weight:bold;font-size:1.2em;}
@@ -54,5 +54,10 @@ body{background:#eaeaea}
 #search_results .result h3 a {text-decoration:none;color:#000;}
 #search_results .result h3 a:hover {text-decoration:underline;}
 #search_results .result .party {padding:0;margin:0;position:absolute;left:0;top:0;}
+
+/* Auto complete */
+#autoCompleteResults {width:288px;left:305px;top:52px;position:absolute;z-index:80;}
+#autoCompleteResults .result {height:40px;line-height:40px;font-size:1.2em;font-weight:bold;text-indent:5px;background:#fff;border-left:1px solid #ccc;border-right:1px solid #ccc;border-bottom:1px solid #ccc;}
+#autoCompleteResults .selected {background:#ececec;}
 
 

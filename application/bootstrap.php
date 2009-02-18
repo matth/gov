@@ -5,12 +5,22 @@
  * @author  
  * @version 
  */
-set_include_path('.' . PATH_SEPARATOR . '../library' . PATH_SEPARATOR . '../application/default/models/' . PATH_SEPARATOR . get_include_path());
 
-define('APPLICATION_DIRECTORY', '..');
+define('APPLICATION_DIRECTORY', realpath(dirname(__FILE__)));
+
+set_include_path(APPLICATION_DIRECTORY . '/../library' . PATH_SEPARATOR . APPLICATION_DIRECTORY . '/../application/default/models/' . PATH_SEPARATOR . get_include_path() . PATH_SEPARATOR . '.');
+
+require_once 'Zend/Loader.php'; // one require_once is still necessary
+Zend_Loader::registerAutoload();
 
 require_once 'Initializer.php';
- 
+
+$classFileIncCache = APPLICATION_DIRECTORY .  '/../data/pluginLoaderCache.php';
+if (file_exists($classFileIncCache)) {
+    include_once $classFileIncCache;
+}
+Zend_Loader_PluginLoader::setIncludeFileCache($classFileIncCache);
+
 // Prepare the front controller. 
 $frontController = Zend_Controller_Front::getInstance(); 
 

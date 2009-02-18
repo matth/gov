@@ -23,6 +23,11 @@ class MpController extends Zend_Controller_Action {
 	public function init() {
 		parent::init();
 		$this->mapper = new MpSqliteMapper();
+		
+		// Context switch
+		$contextSwitch = $this->_helper->getHelper('contextSwitch');
+		$contextSwitch->addContext('autocomplete', array('Content-Type' => 'text/javascript', 'suffix' => 'autocomplete'));
+        $contextSwitch->addActionContext('list', 'autocomplete')->initContext();
 	}
 	
 	/**

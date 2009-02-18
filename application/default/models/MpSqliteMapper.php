@@ -15,7 +15,7 @@ class MpSqliteMapper implements MpMapperInterface {
 	public function __construct() {
 		
 		$this->dbh = Zend_Db::factory('PDO_SQLITE', array(
-			'dbname' => APPLICATION_DIRECTORY . '/bin/findyourmp.db'
+			'dbname' => APPLICATION_DIRECTORY . '/../bin/findyourmp.db'
 		));
 		
 		$this->dbh->getConnection()->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );		
@@ -121,7 +121,7 @@ class MpSqliteMapper implements MpMapperInterface {
 	 * @return Mp
 	 */
 	private function getMp($mpData) {
-		return new Mp($mpData['name'], $mpData['party'], $mpData['constituency'], $mpData['person_id']);
+		return new Mp($mpData['name'], $mpData['party'], $mpData['constituency'], $mpData['person_id'], $mpData['lon'], $mpData['lat']);
 	}
 	
 }

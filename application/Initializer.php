@@ -137,6 +137,8 @@ class Initializer extends Zend_Controller_Plugin_Abstract
     	// register the default action helpers
     	Zend_Controller_Action_HelperBroker::addPath('../application/default/helpers', 'Zend_Controller_Action_Helper');
     	
+    	
+    	
     }
     
     /**
@@ -151,7 +153,7 @@ class Initializer extends Zend_Controller_Plugin_Abstract
 		    'layoutPath' => $this->_root .  '/application/default/layouts',
 		    'layout' => 'main'
 		));
-    	
+		
     }
     
     /**

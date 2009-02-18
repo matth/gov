@@ -20,6 +20,8 @@ echo $this->doctype('XHTML1_STRICT');
 		
 		$this->headLink()->appendStylesheet('/css/__application-version-number__/common.css');
 		$this->headScript()->appendFile('/js/__application-version-number__/common.js');
+		$this->headScript()->appendFile('/mp/list/format/autocomplete');
+		$this->headScript()->appendFile('/js/__application-version-number__/autocomplete.js');
 				
 		echo $this->headTitle();
 		echo $this->headLink();
